@@ -1,11 +1,21 @@
 name: Python Code Quality
 on: [push]
+
 jobs:
+  
+        # cache: 'venv' # Optional: uncomment to cache the virtual environment 
+
   lock_file:
     runs-on: [windows-latest]
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
       - run: uv lock --locked
   linting:
     runs-on: [windows-latest]
