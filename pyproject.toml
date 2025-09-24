@@ -1,0 +1,25 @@
+[project]
+name = "ci-cd"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "gregasl", email = "greg.mahoney@aslcap.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=8.4.2",
+]
+
+[project.scripts]
+ci-cd = "ci_cd:main"
+
+[build-system]
+requires = ["uv_build>=0.8.16,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.405",
+    "pytest-cov>=7.0.0",
+]
