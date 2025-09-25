@@ -10,11 +10,9 @@ jobs:
 
     steps:
       - name: checkout repo
-        uses: actions/checkout@v4
-    
-      - uses: ./.github/actions/setup
-      - name: Install dependencies
-        run: uv sync --group dev
+      #  uses: actions/checkout@v4
+        uses: ./.github/workflows/build-cache
+        
       - run: uvx ruff check .
 
 
