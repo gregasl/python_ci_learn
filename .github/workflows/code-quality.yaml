@@ -9,10 +9,8 @@ jobs:
     runs-on: [windows-latest]
 
     steps:
-      - name: checkout repo
-      #  uses: actions/checkout@v4
-        uses: ./.github/workflows/build-cache
-        
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/build-cache
       - run: uvx ruff check .
 
 
