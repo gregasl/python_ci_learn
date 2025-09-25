@@ -19,6 +19,9 @@ jobs:
         with:
           enable-cache: true
 
+        with:
+          enable-cache: true
+        
       - run: uv lock --locked
   linting:
     runs-on: [windows-latest]
