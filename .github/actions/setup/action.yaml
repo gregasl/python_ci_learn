@@ -1,17 +1,11 @@
 name: Build uv cache
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "uv.lock"
-      - "pyproject.toml"
   workflow_dispatch:
 
 jobs:
   build-cache:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
       - name: Checkout repository
