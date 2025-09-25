@@ -12,7 +12,7 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
     
-      - uses: ./.github/actions/setup/build_uv_cache
+      - uses: ./build_uv_cache
       - name: Install dependencies
         run: uv sync --group dev
       - run: uvx ruff check .
