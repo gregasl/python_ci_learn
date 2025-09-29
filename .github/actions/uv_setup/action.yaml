@@ -1,0 +1,43 @@
+name: restore uv cache
+description: get the un cache to run the steps - cache build in build_uv_cache
+
+inputs:
+  caching:
+    description: ''
+    required: false
+    default: 'true'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Restore global uv chache
+      id: cache-restore
+      uses: actions/cache/restore@v4
+        with:
+          path: |
+            ~/.cache/uv
+            ~/.local/share/uv
+            .venv
+          key: uv-main-${{ hashFiles('uv.lock') }}
+          restore-keys: |
+            uv-main-
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.8.20"
+          python-version: "3.12.9"
+          enable-cache: false
+
+      - name: Install dependencies
+        run: uv sync --group dev
+      
+      - name: Save uv caches
+        if: steps.cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ~/.cache/uv
+            ~/.local/share/uv
+            .venv
+          key: uv-main-${{ hashFiles('uv.lock') }}

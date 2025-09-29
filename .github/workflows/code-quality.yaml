@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/workflows/build-cache
+      - uses: ./.github/actions/uv_setup
       - run: uvx ruff check .
 
 
@@ -24,13 +24,13 @@ jobs:
     runs-on: [windows-latest]
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/uv_setup
       - run: uv run pyright .
   tests:
     runs-on: [windows-latest]
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/uv_setup
       - run: uv run pytest -v --durations=0 --cov --cov-report=xml
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -41,5 +41,5 @@ jobs:
     needs: [linting, formatting, type_consistency, tests]
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/uv_setup
       - run: uv build

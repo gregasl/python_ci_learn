@@ -1,11 +1,17 @@
 name: Build uv cache
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "uv.lock"
+      - "pyproject.toml"
   workflow_dispatch:
 
 jobs:
   build-cache:
-    runs-on: windows-latest
+    runs-on: windows_latest
     
     steps:
       - name: Checkout repository
@@ -20,6 +26,8 @@ jobs:
 
       - name: Install dependencies and populate cache
         run: |
+          echo "add ruff"
+          uv add --dev ruff
           echo "Building global UV cache..."
           uv sync --group dev
           echo "Cache populated successfully"
