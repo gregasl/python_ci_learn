@@ -1,5 +1,5 @@
-name: restore uv cache
-description: get the un cache to run the steps - cache build in build_uv_cache
+name: 'restore uv cache'
+description: 'get the un cache to run the steps - cache build in build_uv_cache'
 
 inputs:
   caching:
