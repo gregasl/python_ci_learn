@@ -18,14 +18,16 @@ jobs:
     runs-on: [windows-latest]
     steps:
       - uses: actions/checkout@v4
-      
+      - uses: ./.github/actions/uv_setup
       - run: uvx ruff format --check .
+      
   type_consistency:
     runs-on: [windows-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/uv_setup
       - run: uv run pyright .
+
   tests:
     runs-on: [windows-latest]
     steps:
