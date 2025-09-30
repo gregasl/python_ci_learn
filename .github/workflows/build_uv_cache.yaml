@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-cache:
-    runs-on: windows_latest
+    runs-on: windows-latest
     
     steps:
       - name: Checkout repository
