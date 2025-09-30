@@ -7,6 +7,8 @@ on:
     paths:
       - "uv.lock"
       - "pyproject.toml"
+      - ".python-version"
+      
   workflow_dispatch:
 
 jobs:
